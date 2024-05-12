@@ -27,8 +27,8 @@ services:
       POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_HOST_AUTH_METHOD: "md5\nhost replication ${DB_REPL_USER} 0.0.0.0/0 md5"
       POSTGRES_INITDB_ARGS: "--auth-host=md5"
-  command: |
-    postgres 
+    command: |
+      postgres 
       -c wal_level=replica 
       -c hot_standby=on 
       -c max_wal_senders=10 
