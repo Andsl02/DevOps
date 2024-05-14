@@ -3,6 +3,8 @@ version: '3.8'
 services:
   bot:
     image: bot_image
+    env_file:
+      - .env
     environment:
       RM_HOST: ${RM_HOST}
       RM_USER: ${RM_USER}
@@ -18,7 +20,8 @@ services:
       - db
     ports:
       - "8000:8000"
-
+    command: bash -c 'env && python /app/bot.py'
+    
   db:
     image: db_image
     environment:
@@ -35,9 +38,9 @@ services:
       -c max_replication_slots=10 
       -c hot_standby_feedback=on
       -c log_replication_commands=on
-  volumes:
+    volumes:
     - db_data:/var/lib/postgresql/data
-  ports:
+    ports:
     - "${DB_PORT}"
 
   db_repl:
@@ -65,6 +68,7 @@ services:
       - db_repl_data:/var/lib/postgresql/data
     ports:
       - "${DB_REPL_PORT}"
+      
 volumes:
   db_data:
   db_repl_data:
