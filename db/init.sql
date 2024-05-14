@@ -1,5 +1,5 @@
 CREATE ROLE repl_user WITH REPLICATION LOGIN PASSWORD 'kali';
-SELECT pg_create_physical_replication_slot('replication_slot');
+SELECT pg_create_physical_replication_slot('replication_name');
 
 -- Создаем таблицу для хранения email-адресов
 CREATE TABLE email_table (
