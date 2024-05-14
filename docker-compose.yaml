@@ -49,7 +49,7 @@ services:
       bash -c '
       rm -rf /var/lib/postgresql/data/*
       export PGPASSWORD=${DB_REPL_PASSWORD} &&
-      until pg_basebackup -D /var/lib/postgresql/data -R --slot=replication_slot -h ${DB_HOST} -p ${DB_PORT} -U ${DB_REPL_USER} -W --verbose
+      until pg_basebackup -D /var/lib/postgresql/data -R --slot=replication_name -h ${DB_HOST} -p ${DB_PORT} -U ${DB_REPL_USER} -W --verbose
       do
       echo "Waiting for primary to connect..."
       sleep 5s
