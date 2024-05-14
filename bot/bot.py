@@ -68,9 +68,10 @@ def findPhoneNumbersCommand(update: Update, context):
     return 'find_phone_number'
 
 
-def findPhoneNumbers (update: Update, context):
+def findPhoneNumbers(update: Update, context):
     user_input = update.message.text
-    phone_pattern = re.compile(r'(?:\+7|8)\s?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}\b')
+    # Обновленное регулярное выражение для обработки всех указанных форматов
+    phone_pattern = re.compile(r'(?:\+7|8)[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}|\b(?:\+7|8)[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}\b')
     phoneNumberList = phone_pattern.findall(user_input)
 
     if not phoneNumberList:
